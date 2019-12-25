@@ -1,0 +1,20 @@
+{
+  "name": "stubserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server.js",
+    "test": "echo \"Lol, no tests with this\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.7.7",
+    "express": "^4.17.1"
+  }
+}
