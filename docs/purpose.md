@@ -38,10 +38,10 @@ The accounts screen should show a list of all of the accounts in a table along w
 - Name
 - Role
 
-When either the profile visualization or memory visualization buttons are clicked, they should route respectivly to the tools.
+When either the profile visualization or memory visualization buttons are clicked, they should route to the correct tool.
 
 ### Memory
-Memory page should handling the displaying of memory for each of the users as well as give analytics on the request set.
+Memory page should handle displaying each memory per user as well as give analytics on the request set.
 
 Memory should be visualized on a timestamp basisis on possbily a line graph? When a memory stamp is selected details regarding the contents of the messsage. 
 

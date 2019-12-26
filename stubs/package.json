@@ -15,6 +15,11 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.7.7",
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.8",
+    "socket.io": "^2.3.0",
+    "uuid": "^3.3.3"
   }
 }
