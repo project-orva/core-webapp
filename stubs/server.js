@@ -227,7 +227,7 @@ ws.on('connection', function (socket) {
     socket.on('subscribeToChat', ({ uid, did, request }) => {
         socket.emit(`chat-${uid}_${did}`, {
             duration: 12312,
-            message: 'This is an example',
+            message: `echo ${request}`,
             gphType: '',
             gph: '',
         });
