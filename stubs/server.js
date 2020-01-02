@@ -219,7 +219,7 @@ ws.on('connection', function (socket) {
             memory: Math.round(Math.random() * (10 - 20) + 10),
             account: Math.round(Math.random() * (10 - 20) + 10),
             skill: Math.round(Math.random() * (10 - 20) + 10),
-            sppech: Math.round(Math.random() * (10 - 20) + 10),
+            speech: Math.round(Math.random() * (10 - 20) + 10),
         })
         socket.emit('accountsCount', { count: accounts.length });
     }, 1000);
