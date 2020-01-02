@@ -7,8 +7,10 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
-export default () => (
+const App = () => (
   <Provider store={store}>
     This is a our app
   </Provider>
 );
+
+export default App;
