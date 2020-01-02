@@ -18,10 +18,10 @@ As for the layout, this page (along with mostly all of the other pages excluding
 - Core Real-Time-Chat
 
 ### Login
-If a user is not root or admin then the a prompt that the sys admin has been notified will be shown- additionally, a post request should be made to the `/tango` route with the user information realvent to the spec. (Ideally these instances should be handled on the server side, but for learning sake we will do them client side).  
+If a user is not root or admin then the a prompt that the sys admin has been notified will be shown- additionally, a post request should be made to the `/tango` route with the user information relevant to the spec. (Ideally these instances should be handled on the server side, but for learning sake we will do them client side).  
 
 ### Home
-After successful login, a user should be presented with an anyaltics dashboard. 
+After successful login, a user should be presented with an analytics dashboard. 
 
 __Dashboard MVP__
 - active users in pie graph of total
@@ -43,10 +43,10 @@ When either the profile visualization or memory visualization buttons are clicke
 ### Memory
 Memory page should handle displaying each memory per user as well as give analytics on the request set.
 
-Memory should be visualized on a timestamp basisis on possbily a line graph? When a memory stamp is selected details regarding the contents of the messsage. 
+Memory should be visualized on a timestamp basics on possibly a line graph? When a memory stamp is selected details regarding the contents of the message. 
 
 ### Skills
-For skills, a basic table should be displayed for each of the skills. The skills page should also include a button for adding a new skill following the skill proto. Lastly, this skill page should basic analytics for skill usage.
+For skills, a basic table should be displayed for each of the skills. The skills page should also include a button for adding a new skill following the skill protobuf file. Lastly, this skill page should basic analytics for skill usage.
 
 ### Profile
 Profile page should be the visualization for the profiles. This should just having mappings of history via a timeline, along with account interpersonal relationships.
