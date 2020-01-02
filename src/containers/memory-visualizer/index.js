@@ -1,9 +1,9 @@
 import React from 'react';
 
-const MemoryVisualizer = () => {
+const MemoryVisualizer = () => (
     <>
         Memory Screen
-    </>;
-};
+    </>
+);
 
 export default MemoryVisualizer;
