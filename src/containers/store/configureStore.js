@@ -9,4 +9,6 @@ export default () => {
       password: passwordReducer
     })
   );
+
+  return store;
 };
