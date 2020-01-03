@@ -26,6 +26,7 @@ module.exports = {
         "quotes": ["error", "single"],
         "eol-last": ["error", "always"],
         "max-len": ["error", { "code": 80 }],
-        "max-depth": [1, 3]
+        "max-depth": [1, 3],
+        "react/display-name": false,
     }
 };
