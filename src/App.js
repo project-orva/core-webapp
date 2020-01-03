@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import rootReducer from 'reducers';
 import * as rootContainers from 'containers/root-containers'; 
 
+import './App.css';
+
 const store = createStore(rootReducer);
 
 const App = () => (
