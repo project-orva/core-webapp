@@ -14,7 +14,7 @@ const store = createStore(rootReducer);
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Route path="/" exact component={rootContainers.AnalyticsDashboard} />
+      <Route path="/dashboard" exact component={rootContainers.AnalyticsDashboard} />
       <Route path="/accounts" exact component={rootContainers.Accounts} />
       <Route path="/login" exact component={rootContainers.Login} />
       <Route  
@@ -22,7 +22,17 @@ const App = () => (
         exact
         component={rootContainers.MemoryVisualizer}
       />
+      <Route  
+        path="/memory-visualizer"  
+        exact
+        component={rootContainers.MemoryVisualizer}
+      />
       <Route path="/orva-rtc" exact component={rootContainers.OrvaRTC} />
+      <Route
+        path="/profile-visualizer"
+        exact
+        component={rootContainers.ProfileVisualizer}
+      />
       <Route
         path="/profile-visualizer/:address"
         exact
