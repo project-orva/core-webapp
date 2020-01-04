@@ -6,7 +6,6 @@ import emailAction from "../actions/email";
 import passwordAction from "../actions/password";
 
 const Login = props => {
-  console.log(props);
   return (
     <Form layout="inline" onSubmit={e => e.preventDefault()}>
       <Form.Item>
@@ -15,6 +14,7 @@ const Login = props => {
           placeholder="Email"
           value={props.email.text}
           onChange={e => props.dispatch(emailAction({ text: e.target.value }))}
+          required
         />
       </Form.Item>
       <Form.Item>
@@ -22,9 +22,11 @@ const Login = props => {
           prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
           type="password"
           placeholder="Password"
+          value={props.password.text}
           onChange={e =>
             props.dispatch(passwordAction({ text: e.target.value }))
           }
+          required
         />
       </Form.Item>
       <Form.Item>

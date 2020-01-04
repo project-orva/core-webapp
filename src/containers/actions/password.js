@@ -1,4 +1,4 @@
-const passwordAction = (text = "") => ({
+const passwordAction = ({ text = "" }) => ({
   type: "PASSWORD",
   text
 });

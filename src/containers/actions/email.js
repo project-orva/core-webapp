@@ -1,4 +1,4 @@
-const emailAction = (text = "") => ({
+const emailAction = ({ text = "" }) => ({
   type: "EMAIL",
   text
 });
