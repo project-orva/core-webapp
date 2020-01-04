@@ -4,13 +4,13 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import * as rootContainers from "containers/root-containers";
-import configureStore from "../src/containers/store/configureStore";
-import "./App.css";
+import configureStore from "store/configureStore";
+import "App.css";
 
 const store = configureStore();
 
 const App = () => (
-  <Provider store={store}>
+  <Provider store={store}>    
     <BrowserRouter>
       <Route path="/dashboard" exact component={rootContainers.AnalyticsDashboard} />
       <Route path="/accounts" exact component={rootContainers.Accounts} />

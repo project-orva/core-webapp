@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-import exampleReducer from './exampe';
+import formFieldHof from 'reducers/form-field-hof';
 
-export default combineReducers({exampleReducer});
+export default combineReducers({
+  login: formFieldHof(['LOGIN_PASSWORD', 'LOGIN_EMAIL'])
+});
