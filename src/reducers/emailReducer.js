@@ -1,13 +1,12 @@
-const emailReducer = (state = {}, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case "EMAIL":
       return {
         ...state,
         text: action.text
       };
-    default:
+    default: {
       return state;
+    }
   }
 };
-
-export default emailReducer;

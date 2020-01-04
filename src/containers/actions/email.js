@@ -1,4 +1,6 @@
-export const emailAction = text => ({
-  type: "PASSWORD",
+const emailAction = (text = "") => ({
+  type: "EMAIL",
   text
 });
+
+export default emailAction;

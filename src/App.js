@@ -1,15 +1,13 @@
-import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
-import rootReducer from 'reducers';
-import * as rootContainers from 'containers/root-containers'; 
+import * as rootContainers from "containers/root-containers";
+import configureStore from "../src/containers/store/configureStore";
+import "./App.css";
 
-import './App.css';
-
-const store = createStore(rootReducer);
+const store = configureStore();
 
 const App = () => (
   <Provider store={store}>
@@ -17,8 +15,8 @@ const App = () => (
       <Route path="/" exact component={rootContainers.AnalyticsDashboard} />
       <Route path="/accounts" exact component={rootContainers.Accounts} />
       <Route path="/login" exact component={rootContainers.Login} />
-      <Route  
-        path="/memory-visualizer/:address"  
+      <Route
+        path="/memory-visualizer/:address"
         exact
         component={rootContainers.MemoryVisualizer}
       />
