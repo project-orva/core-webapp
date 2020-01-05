@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import formFieldHof from 'reducers/form-field-hof';
+import formFieldHof from "reducers/form-field-hof";
 
 export default combineReducers({
-  login: formFieldHof(['LOGIN_PASSWORD', 'LOGIN_EMAIL'])
+  login: formFieldHof(["LOGIN_PASSWORD", "LOGIN_USERNAME"])
 });
