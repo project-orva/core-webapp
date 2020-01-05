@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-import exampleReducer from './exampe';
+import coreRTC from './core-rtc';
 
-export default combineReducers({exampleReducer});
+export default combineReducers({
+    coreRTC
+});
