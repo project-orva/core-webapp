@@ -68,7 +68,7 @@ const enhance = compose(
         }));
       if (err !== undefined) {
         await axios
-          .post('https://localhost:3006/tango', data)
+          .post('https://localhost:3006/tango', username)
           .then(alert('Failed attempt has been logged'));
       }
     }
