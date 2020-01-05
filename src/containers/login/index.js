@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import './login.scss';
 
+const image = require('../../assets/logo.png');
 const Login = ({
   handleFormSubmit,
   updateUsernameField,
@@ -14,6 +15,7 @@ const Login = ({
   password
 }) => (
   <Form layout='inline' onSubmit={handleFormSubmit} className='login-form'>
+    <img src={image} alt='Orva logo' className='login-img' />
     <Form.Item>
       <Input
         prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -66,7 +68,7 @@ const enhance = compose(
         }));
       if (err !== undefined) {
         await axios
-          .post('https://localhost:3006/tango', data)
+          .post('https://localhost:3006/tango', username)
           .then(alert('Failed attempt has been logged'));
       }
     }
