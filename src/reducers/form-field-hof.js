@@ -1,12 +1,12 @@
-export default (types) => {
+export default types => {
   return (state = {}, payload) => {
-    if(types.includes(payload.type)) {
+    if (types.includes(payload.type)) {
       return {
         ...state,
-        [payload.fid]: payload.value,
-      }
+        [payload.fid]: payload.value
+      };
     }
 
     return state;
-  }
-}
+  };
+};

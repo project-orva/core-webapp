@@ -13,7 +13,7 @@ const Login = ({
   username,
   password
 }) => (
-  <Form layout='inline' onSubmit={handleFormSubmit}>
+  <Form layout='inline' onSubmit={handleFormSubmit} className='login-form'>
     <Form.Item>
       <Input
         prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -34,7 +34,7 @@ const Login = ({
       />
     </Form.Item>
     <Form.Item>
-      <Button type='primary' htmlType='submit'>
+      <Button type='primary' htmlType='submit' className='login-btn'>
         Log in
       </Button>
     </Form.Item>
@@ -64,6 +64,11 @@ const enhance = compose(
         .catch(({ response }) => ({
           err: response
         }));
+      if (err !== undefined) {
+        await axios
+          .post('https://localhost:3006/tango', data)
+          .then(alert('Failed attempt has been logged'));
+      }
     }
   }),
   lifecycle({
