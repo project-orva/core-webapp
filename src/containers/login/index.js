@@ -72,14 +72,13 @@ const enhance = compose(
         }));
       if (err !== undefined) {
         await axios
-          .post('https://localhost:3006/tango', username)
+          .post('https://localhost:3006/tango', { userID: username })
           .then(alert('Failed attempt has been logged'));
-      } else {
-        localStorage.setItem('user', username);
-        localStorage.setItem('pass', password);
 
-        return localStorage ? history.push('/') : <Redirect to='/login' />;
+        return;
       }
+      localStorage.setItem(JSON.stringify(data.response));
+      return localStorage ? history.push('/') : <Redirect to='/login' />;
     }
   }),
   lifecycle({
