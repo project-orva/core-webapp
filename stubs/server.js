@@ -149,8 +149,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 app.post('/auth', ({ body: { username, password } }, res) => {
-    res.send({
-        [true]: { error: 'Auth Failed: Invalid username or password' },
+    const ed = {
         [username === 'root' && password === 'root']: {
             origin: 'stub',
             role: '4',
@@ -169,7 +168,15 @@ app.post('/auth', ({ body: { username, password } }, res) => {
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
             createdAt: Math.abs(Date.now() / 1000),
         },
-    }.true);
+    }.true 
+
+    if(ed) {
+        res.send(ed);
+        return;
+    }
+
+    res.status(401);
+    res.send({Error: 'Invalid Username or Password'});
 });
 
 app.post('/tango', ({ body: { userID } }, res) => {
