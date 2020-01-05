@@ -5,8 +5,8 @@ import { compose, withHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 
 import './login.scss';
+import { Redirect } from 'react-router-dom';
 
-const image = require('../../assets/logo.png');
 const Login = ({
   handleFormSubmit,
   updateUsernameField,
@@ -15,7 +15,11 @@ const Login = ({
   password
 }) => (
   <Form layout='inline' onSubmit={handleFormSubmit} className='login-form'>
-    <img src={image} alt='Orva logo' className='login-img' />
+    <img
+      src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+      alt='Orva logo'
+      className='login-img'
+    />
     <Form.Item>
       <Input
         prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -57,7 +61,7 @@ const enhance = compose(
     })
   }),
   withHandlers({
-    handleFormSubmit: ({ username, password }) => async e => {
+    handleFormSubmit: ({ username, password, history }) => async e => {
       e.preventDefault();
 
       const { data, err } = await axios
@@ -70,6 +74,11 @@ const enhance = compose(
         await axios
           .post('https://localhost:3006/tango', username)
           .then(alert('Failed attempt has been logged'));
+      } else {
+        localStorage.setItem('user', username);
+        localStorage.setItem('pass', password);
+
+        return localStorage ? history.push('/') : <Redirect to='/login' />;
       }
     }
   }),
