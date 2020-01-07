@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
@@ -12,6 +12,11 @@ const store = configureStore();
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
+      <Route
+        path="/"
+        exact
+        component={() => <Redirect to="/dashboard"/>}
+      />
       <Route
         path='/dashboard'
         exact
