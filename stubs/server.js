@@ -180,7 +180,7 @@ app.post('/auth', ({ body: { username, password } }, res) => {
 });
 
 app.post('/tango', ({ body: { userID } }, res) => {
-    !!userID ? res.status(500) : res.status(200)
+    typeof userID === 'undefined' ? res.status(500) : res.status(200)
 });
 
 app.get('/requestsForRange', (req, res) => {
