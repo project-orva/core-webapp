@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import { Form, Icon, Input, Button } from 'antd';
 import { compose, withHandlers, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 
+import fetch from 'api';
+
 import './login.scss';
-import { Redirect } from 'react-router-dom';
 
 const Login = ({
   handleFormSubmit,
@@ -58,32 +58,34 @@ const enhance = compose(
       type: 'LOGIN_PASSWORD',
       fid: 'password',
       value
+    }),
+    applyCreds: (creds) => ({
+      type: 'APPLY_CREDS',
+      value: creds,
     })
   }),
   withHandlers({
-    handleFormSubmit: ({ username, password, history }) => async e => {
+    handleFormSubmit: ({ username, password, history, applyCreds }) => async e => {
       e.preventDefault();
 
-      const { data, err } = await axios
-        .post('http://localhost:3006/auth', { username: username, password })
-        .then(data => ({ data, err: undefined }))
-        .catch(({ response }) => ({
-          err: response
-        }));
+      const {data, err} = await fetch.post('auth', { 
+        username,
+        password 
+      });
+
       if (err !== undefined) {
-        await axios
-          .post('https://localhost:3006/tango', { userID: username })
-          .then(alert('Failed attempt has been logged'));
+        fetch.post('tango', {userID: username});
+
+        // todo: bind this alert to custom alert system
+        alert('Failed attempt has been logged');
 
         return;
-      }
-      localStorage.setItem(JSON.stringify(data.response));
-      return localStorage ? history.push('/') : <Redirect to='/login' />;
-    }
-  }),
-  lifecycle({
-    componentDidCatch(err) {
-      // handle some error
+      } 
+
+      applyCreds(data)
+      localStorage.setItem('creds', JSON.stringify(data));
+      
+      history.push('/');
     }
   })
 );
