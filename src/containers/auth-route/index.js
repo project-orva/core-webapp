@@ -7,8 +7,7 @@ import { isEmpty } from 'lodash';
 const enhance = compose(
   connect(({ creds: { creds } }) => ({ creds })),
   withProps(({ requireAuth = true, creds }) => ({  
-    // redirect if no creds and it requires auth
-    // no redirect if it doesn't require auth
+    // auth requires creds to be present, duh
     shouldRender: requireAuth ? !isEmpty(creds) : isEmpty(creds),
     redirectPath: requireAuth ? '/login' : '/dashboard',
   })),
