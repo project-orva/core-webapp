@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
+import ProtectedRoute from 'containers/auth-route'
 import * as rootContainers from 'containers/root-containers';
 import configureStore from 'store/configureStore';
 import 'App.css';
@@ -15,37 +16,37 @@ const App = () => (
       <Route
         path="/"
         exact
-        component={() => <Redirect to="/dashboard"/>}
+        component={() => <Redirect to="/dashboard" />}
       />
-      <Route
+      <ProtectedRoute
         path='/dashboard'
         exact
         component={rootContainers.AnalyticsDashboard}
       />
-      <Route path='/accounts' exact component={rootContainers.Accounts} />
-      <Route path='/login' exact component={rootContainers.Login} />
-      <Route
+      <ProtectedRoute path='/accounts' exact component={rootContainers.Accounts} />
+      <ProtectedRoute requireAuth={false} path='/login' exact component={rootContainers.Login} />
+      <ProtectedRoute
         path='/memory-visualizer/:address'
         exact
         component={rootContainers.MemoryVisualizer}
       />
-      <Route
+      <ProtectedRoute
         path='/memory-visualizer'
         exact
         component={rootContainers.MemoryVisualizer}
       />
-      <Route path='/orva-rtc' exact component={rootContainers.OrvaRTC} />
-      <Route
+      <ProtectedRoute path='/orva-rtc' exact component={rootContainers.OrvaRTC} />
+      <ProtectedRoute
         path='/profile-visualizer'
         exact
         component={rootContainers.ProfileVisualizer}
       />
-      <Route
+      <ProtectedRoute
         path='/profile-visualizer/:address'
         exact
         component={rootContainers.ProfileVisualizer}
       />
-      <Route path='/skills' exact component={rootContainers.Skills} />
+      <ProtectedRoute path='/skills' exact component={rootContainers.Skills} />
     </BrowserRouter>
   </Provider>
 );

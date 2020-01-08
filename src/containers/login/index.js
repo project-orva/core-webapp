@@ -85,7 +85,7 @@ const enhance = compose(
       applyCreds(data)
       localStorage.setItem('creds', JSON.stringify(data));
       
-      history.push('/');
+      history.push('/dashboard');
     }
   })
 );

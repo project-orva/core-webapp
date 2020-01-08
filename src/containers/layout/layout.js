@@ -1,35 +1,42 @@
 import React from 'react';
+import { Layout, Menu, Breadcrumb, Icon, Dropdown } from 'antd';
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
-const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-const DefaultLayout = ({ children: Children, selectedKeys, onMenuItemClick }) => (
+const DefaultLayout = ({ children: Children, selectedKeys, onMenuItemClick, logout = () => {} }) => (
     <Layout
         style={{ height: '100vh' }}
     >
         <Header className="header">
             <div className="logo" style={{
                 backgroundImage: `url('${process.env.PUBLIC_URL}/assets/logo.png')`,
-                height: 55,
-                width: 55,
+                height: 50,
+                width: 50,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
-                marginTop: 3,
+                marginTop: 5,
                 marginLeft: 20
             }} />
-
+            <div style={{ position: 'absolute', right: 25, top: 0, size: 20 }}>
+                <Dropdown overlay={(
+                    <Menu>
+                        <Menu.Item onClick={logout}>
+                            Log out
+                        </Menu.Item>
+                    </Menu>
+                )}>
+                    <div style={{ color: 'white', fontSize: 20, cursor: 'pointer'}}>
+                        <Icon type="user" />
+                    </div>
+                </Dropdown>
+            </div>
             <Menu
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={['2']}
                 style={{ lineHeight: '64px' }}
             >
-                <Menu.Item key="1">
-                    <Icon type="profile" />
-                </Menu.Item>
             </Menu>
         </Header>
         <Layout>
