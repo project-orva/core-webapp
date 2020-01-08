@@ -10,9 +10,13 @@ const enhance = compose(
             type: 'CLEAR_CREDS'
         })
     }),
-    withProps(({ location }) => ({
-        selectedKeys: [location.pathname.split('/')[1]]
-    })),
+    withProps(({ location }) => {
+        const breadcrumbs = location.pathname.split('/');
+        return {
+            breadcrumbs: ['Home', ...breadcrumbs],
+            selectedKeys: [breadcrumbs[1]],
+        }
+    }),
     withHandlers({
         onMenuItemClick: ({ history }) => ({ key }) => {
             history.push(`/${key}`);
@@ -26,8 +30,8 @@ const enhance = compose(
 );
 
 const LayoutHOC = (Component) => {
-    return enhance(({ selectedKeys, onMenuItemClick, logout, ...props }) => (
-        <Layout {...{ selectedKeys, onMenuItemClick, logout }}>
+    return enhance(({ breadcrumbs, selectedKeys, onMenuItemClick, logout, ...props }) => (
+        <Layout {...{ breadcrumbs, selectedKeys, onMenuItemClick, logout }}>
             <Component {...props} />
         </Layout>
     ));

@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb, Icon, Dropdown } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 
-const DefaultLayout = ({ children: Children, selectedKeys, onMenuItemClick, logout = () => {} }) => (
+const DefaultLayout = ({ children: Children, breadcrumbs = ['Home'], selectedKeys, onMenuItemClick, logout = () => {} }) => (
     <Layout
         style={{ height: '100vh' }}
     >
@@ -57,9 +57,11 @@ const DefaultLayout = ({ children: Children, selectedKeys, onMenuItemClick, logo
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
                 <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
+                    {
+                        breadcrumbs.map(breadcrumb => (
+                            <Breadcrumb.Item key={breadcrumb}>{breadcrumb}</Breadcrumb.Item>
+                        ))
+                    }
                 </Breadcrumb>
                 <Content
                     style={{
