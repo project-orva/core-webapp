@@ -5,7 +5,7 @@ import { compose, withProps } from 'recompose';
 import { isEmpty } from 'lodash';
 
 const enhance = compose(
-  connect(({ creds: { creds } }) => ({ creds })),
+  connect(({ creds }) => ({ creds })),
   withProps(({ requireAuth = true, creds }) => ({  
     // auth requires creds to be present, duh
     shouldRender: requireAuth ? !isEmpty(creds) : isEmpty(creds),

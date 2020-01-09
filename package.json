@@ -24,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stub:api": "./scripts/stub-api.sh"
+    "stub:api": "./scripts/stub-api.sh",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,6 +44,10 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.17.0",
     "prettier": "^1.19.1"

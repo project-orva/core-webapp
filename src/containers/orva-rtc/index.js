@@ -3,35 +3,24 @@ import { connect } from 'react-redux';
 import { compose, withState, withHandlers } from 'recompose';
 
 import Layout from 'containers/layout';
-
-const RTCMessages = ({ messages }) => (
-    <>
-        {
-            messages.map(message => (
-                <>
-                    {message}
-                </>
-            ))
-        }
-    </>
-);
+import Rtc from 'components/rtc';
 
 const enhance = compose(
     connect(
-        ({ coreRTC: {messages}}) => ({messages}),
+        ({ coreRTC: {messages}, creds: {username}}) => ({messages, username}),
         {
-            addMessage: (message) => ({
+            addMessage: (message, sender) => ({
                 type: 'ADD_MESSAGE',
-                value: message
+                value: { message, sender },
             }),
         }
     ),
     withState('messageInput', 'setMessageInput', ''),
     withHandlers({
-        submitMessage: ({messageInput, setMessageInput, addMessage}) => (event) => {
+        submitMessage: ({messageInput, setMessageInput, addMessage, username}) => (event) => {
             event.preventDefault();
 
-            addMessage(messageInput);
+            addMessage(messageInput, username);
             setMessageInput('');
         },
         updateMessageInput: ({ setMessageInput }) => ({ target: {value}}) => {
@@ -44,10 +33,7 @@ const CoreRTC = enhance(({ messages }) => (
     <>
         Core Real-Time-Chat
 
-        <div>
-            <RTCMessages messages={messages}/>
-            <input />
-        </div>
+        <Rtc messages={messages}/>
     </>
 ));
 

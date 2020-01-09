@@ -151,18 +151,24 @@ app.use('/graphql', graphqlHTTP({
 app.post('/auth', ({ body: { username, password } }, res) => {
     const ed = {
         [username === 'root' && password === 'root']: {
+            username: 'root user',
+            userid: 'root_test_01',
             origin: 'stub',
             role: '4',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
             createdAt: Math.abs(Date.now() / 1000),
         },
         [username === 'dev' && password === 'dev']: {
+            username: 'dev user',
+            userid: 'dev_test_01',
             origin: 'stub',
             role: '3',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
             createdAt: Math.abs(Date.now() / 1000),
         },
         [username === 'admin' && password === 'admin']: {
+            username: 'admin user',
+            userid: 'admin_test_01',
             origin: 'stub',
             role: '2',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',

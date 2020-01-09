@@ -2,13 +2,11 @@ export default (state = {}, payload) => {
   switch(payload.type) {
     case 'APPLY_CREDS': {
       return {
-        creds: payload.value
+        ...payload.value
       }
     }
     case 'CLEAR_CREDS': {
-      return {
-        creds: undefined
-      };
+      return {};
     }
     default: {
       return state;
