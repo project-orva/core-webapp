@@ -33,7 +33,9 @@ const CoreRTC = enhance(({ messages }) => (
     <>
         Core Real-Time-Chat
 
-        <Rtc messages={messages}/>
+        <div style={{ position: 'absolute', height: 500, width: 800}}>
+            <Rtc messages={messages}/>
+        </div>
     </>
 ));
 

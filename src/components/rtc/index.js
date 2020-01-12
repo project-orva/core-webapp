@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Empty } from 'antd';
+
 import './styles.css';
 
 const RtcMessage = ({ sender, message }) => (
@@ -18,7 +20,7 @@ const RtcMessages = ({ messages, className }) => messages.length === 0 ? (
   <>
    <div className={className}>
      <div className="rtc-no-content">
-       No Messages
+      <Empty description={false} />
      </div>
    </div>
   </>
