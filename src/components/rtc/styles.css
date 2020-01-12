@@ -1,0 +1,56 @@
+.rtc-container {
+  border: 1px solid #ccc;
+  width: 80%;
+  height: 100%;
+}
+
+.rtc-input-container {
+  background-color: rgb(27, 145, 255);
+  padding: 12px;
+  width: 100%;
+  height: 60px;
+  position: relative;
+}
+
+.rtc-input {
+  border-radius: 5px;
+  border: none;
+  padding: 5px 12px;
+  width: 40%;
+  min-width: 250px;
+}
+
+.rtc-messages {  
+  width: 100%;
+  height: 90%;
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.rtc-message-orva, .rtc-message-client {
+  padding: 15px;
+  flex-basis: auto;
+  border-radius: 25px;
+
+  margin: 5px 0px;
+}
+
+.rtc-message-orva {
+  min-width: 150px;
+  max-width: 90%;
+
+  background-color: rgb(71, 165, 243);
+}
+
+.rtc-message-client {
+  align-self:flex-end;
+
+  background-color: rgb(235, 214, 123);  
+}
+
+.rtc-no-content {
+  flex-basis: auto;
+  align-self: flex-end;
+}
