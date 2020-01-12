@@ -21,8 +21,8 @@ const RtcMessages = ({ messages, className }) => messages.length === 0 ? (
 ) : (
   <div className={className}>
     {
-      messages.map(message => (
-        <RtcMessage {...message} />
+      messages.map((message, idx) => (
+        <RtcMessage key={idx} {...message} />
       ))
     }
   </div>

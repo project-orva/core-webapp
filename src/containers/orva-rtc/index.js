@@ -1,55 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withState, withHandlers, withProps, lifecycle } from 'recompose';
+import { compose, withState, withHandlers, withProps } from 'recompose';
 
 import Layout from 'containers/layout';
 import Rtc from 'components/rtc';
-import { subscribeToRTC, publishToRTC } from 'api/websockets';
 
 const enhance = compose(
     connect(
-        ({ coreRTC: { messages }, creds: { userid } }) => ({ messages, userid }),
+        ({ coreRTC: { messages }, creds: { userid, ssid } }) => ({ messages, ssid, userid }),
         {
-            addMessage: (message, sender) => ({
-                type: 'ADD_MESSAGE',
-                value: { message, sender },
+            addMessage: (payload) => ({
+                type: 'SOCK_RTC_MESSAGE',
+                payload,
             }),
         }
     ),
-    withProps(({ userid }) => ({
-        chatName: `chat-${userid}_CHANGEDIS`
+    withProps(({ userid, ssid }) => ({
+        chatName: `chat-${userid}_${ssid}`
     })),
     withState('messageInput', 'setMessageInput', ''),
     withHandlers({
-        submitMessage: ({ messageInput, setMessageInput, addMessage, userid }) => (event) => {
+        submitMessage: ({ messageInput, setMessageInput, addMessage, ssid, userid }) => (event) => {
             if (event.charCode !== 13) {
                 return;
             }
 
-            publishToRTC({
-                uid: 'test',
-                did: 'CHANGEDIS',
-                request: messageInput
+            addMessage({
+                request: messageInput,
+                uid: userid,
+                did: ssid,
             });
 
-            addMessage(messageInput, userid);
             setMessageInput('');
         },
         updateMessageInput: ({ setMessageInput }) => ({ target: { value } }) => {
             setMessageInput(value);
         },
-        addSocketMessage: ({ addMessage }) => (data) => {
-            addMessage(data.message, 'orva');
-        }
-    }),
-    lifecycle({
-        componentDidMount() {
-            subscribeToRTC({
-                name: 'chat-test_CHANGEDIS',
-                handler: this.props.addSocketMessage 
-            });
-        }
-    }),
+    }),    
 );
 
 const CoreRTC = enhance(({ messageInput, messages, submitMessage, updateMessageInput }) => (

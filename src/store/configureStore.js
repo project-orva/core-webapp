@@ -1,12 +1,17 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 
 import rootReducer from 'reducers';
+
+import rtcMiddleware from './middleware/rtc';
 
 export default () => {
   const store = createStore(
     rootReducer,
     JSON.parse(localStorage.getItem('redux.persisted')) || {},
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    compose(
+      applyMiddleware(rtcMiddleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    ),
   );
 
   store.subscribe(() => {
