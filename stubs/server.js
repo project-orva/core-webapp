@@ -96,9 +96,9 @@ const schema = buildSchema(`
     locations: [ProfileItem]
   }
   type ProfileItem {
-      name: String
-      createdOn: Int
-      type: String
+    name: String
+    createdOn: Int
+    type: String
   }
   type AccountDetails {
     createdOn: Int

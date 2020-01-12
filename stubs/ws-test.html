@@ -2,7 +2,9 @@
 <script>
   const socket = io('http://localhost:3006');
 
-  socket.on('activeUsersCount', (s) => {
+  socket.emit('subscribeToChat', { uid: 'stuff', did: 'CHANGEDIS', request: 'test' });
+
+  socket.on('chat-stuff_CHANGEDIS', (s) => {
       console.log(s);
   })
 </script>

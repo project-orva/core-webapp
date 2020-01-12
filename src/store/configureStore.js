@@ -10,10 +10,11 @@ export default () => {
   );
 
   store.subscribe(() => {
-    const { creds } = store.getState();    
+    const { creds, coreRTC } = store.getState();    
 
     localStorage.setItem('redux.persisted', JSON.stringify({
-      creds
+      creds,
+      coreRTC,
     }));
   })
 

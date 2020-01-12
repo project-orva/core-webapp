@@ -12,12 +12,35 @@ export const populatedMessages = () => (
       message: 'What is up?'
     },
     {
-      sender: 'Bob',
+      sender: 'bob',
       message: 'Nothing much'
     },
     {
       sender: 'orva',
       message: 'Awesome that is great'
+    },
+    {
+      sender: 'orva',
+      message: 'Awesome that is great'
+    },
+    {
+      sender: 'orva',
+      message: 'Awesome that is great'
+    },
+    {
+      sender: 'bob',
+      message: 'Awesome that is great'
+    },
+    {
+      sender: 'orva',
+      message: 'Awesome that is great'
+    },
+    {
+      sender: 'orva',
+      message: 'Awesome that is great'
+    },{
+      sender: 'bob',
+      message: 'Please come and feed me meat'
     }]} />
   </div>
 );
