@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withState, withHandlers, withProps } from 'recompose';
+import { compose, withState, withHandlers, withProps, lifecycle } from 'recompose';
 
 import Layout from 'containers/layout';
 import Rtc from 'components/rtc';
@@ -12,6 +12,9 @@ const enhance = compose(
             addMessage: (payload) => ({
                 type: 'SOCK_RTC_MESSAGE',
                 payload,
+            }),
+            establishRtcConnection: () => ({
+                type: 'ESTABLISH_CONNECTION'
             }),
         }
     ),
@@ -36,7 +39,12 @@ const enhance = compose(
         updateMessageInput: ({ setMessageInput }) => ({ target: { value } }) => {
             setMessageInput(value);
         },
-    }),    
+    }),
+    lifecycle({
+        componentDidMount() {
+            this.props.establishRtcConnection();
+        }
+    })
 );
 
 const CoreRTC = enhance(({ messageInput, messages, submitMessage, updateMessageInput }) => (
