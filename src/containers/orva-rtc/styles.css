@@ -1,0 +1,21 @@
+.rtc-grid-container {
+  display: grid;
+  grid-template: 
+  "c c i i"
+  "c c i i"
+  "t t t t";
+  border: 1px solid #e8e8e8;
+}
+
+.rtc-grid-chat {
+  grid-area: c;
+  height: 500px;  
+}
+
+.rtc-grid-trace-info {
+  grid-area: i;
+}
+
+.rtc-grid-trace {
+  grid-area: t;
+}

@@ -4,13 +4,16 @@ import { Empty } from 'antd';
 
 import './styles.css';
 
-const RtcMessage = ({ sender, message }) => (
-  <div className={sender === 'orva' ? 'rtc-message-orva' : 'rtc-message-client'}>
+const RtcMessage = ({ onSelection, sender, message }) => (
+  <div
+    onClick={sender === 'orva' ? () => onSelection() : () => {}}
+    className={sender === 'orva' ? 'rtc-message-orva' : 'rtc-message-client'}
+  >
     {message}
   </div>
 )
 
-const RtcMessages = ({ messages, className, messagesEndRef }) => messages.length === 0 ? (
+const RtcMessages = ({ messages, onSelection, className, messagesEndRef }) => messages.length === 0 ? (
   <>
     <div className={className}>
       <div className="rtc-no-content">
@@ -22,7 +25,7 @@ const RtcMessages = ({ messages, className, messagesEndRef }) => messages.length
     <div className={className}>
       {
         messages.map((message, idx) => (
-          <RtcMessage key={idx} {...message} />
+          <RtcMessage key={idx} {...message} onSelection={onSelection} />
         ))
       }
       <div ref={messagesEndRef} />
@@ -32,6 +35,7 @@ const RtcMessages = ({ messages, className, messagesEndRef }) => messages.length
 export default ({
   messages = [],
   onKeyUp = () => { },
+  onSelection=() => {},
   onChange = () => { },
   tempInput = '',
 }) => {
@@ -51,6 +55,7 @@ export default ({
         messagesEndRef={messagesEndRef}
         className="rtc-messages"
         messages={messages}
+        onSelection={onSelection}
       />
       <div className="rtc-input-container">
         <input
