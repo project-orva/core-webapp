@@ -10,7 +10,9 @@ import configureStore from 'store/configureStore';
 import 'App.css';
 
 const store = configureStore();
-const client = new ApolloClient({ uri: 'http://localhost:8080/graphql' });
+const client = new ApolloClient({
+  uri: 'http://localhost:3006/graphql'
+});
 
 const App = () => (
   <Provider store={store}>
