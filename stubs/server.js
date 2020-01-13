@@ -212,7 +212,7 @@ setInterval(() => {
         })
         accounts.push({
             accountDetails: {
-                createdOn: Math.abs(Date.now() / 1000),
+                createdOn: ~~(Math.abs(Date.now() / 1000)),
                 role: 2,
                 name: `test account - ${accounts.length}`,
                 rpm: 312,
