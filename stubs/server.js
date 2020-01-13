@@ -30,24 +30,24 @@ const exampleProfile = {
     relationships: [
         {
             name: 'bob shoomer',
-            createdOn: 1577338448,
+            createdOn: 1,
             type: 'family'
         },
         {
             name: 'test acc',
-            createdOn: 1577338448,
+            createdOn: 1,
             type: 'friend',
         },
         {
             name: 'guy ross',
             type: 'boyfriend',
-            createdOn: 1577338448,
+            createdOn: 1,
         }
     ],
     favorites: [
         {
             name: 'cabbage',
-            createdOn: 1577338448,
+            createdOn: 1,
             type: 'food'
         }
     ],
@@ -55,7 +55,7 @@ const exampleProfile = {
         {
             name: 'london',
             type: 'interest',
-            createdOn: 1577338448,
+            createdOn: 1,
         }
     ]
 }
@@ -206,17 +206,17 @@ setInterval(() => {
 
         memories.push({
             did,
-            id,
+            uid: id,
             request: 'some mock message',
             response: 'some mock response',
         })
         accounts.push({
             accountDetails: {
-                createdOn: ~~(Math.abs(Date.now() / 1000)),
+                createdOn:0,
+                id: id,
                 role: 2,
                 name: `test account - ${accounts.length}`,
                 rpm: 312,
-                id,
             },
             devices: [{ id: did }],
         });
