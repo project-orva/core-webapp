@@ -22,11 +22,11 @@ export default store => {
         const { creds: { userid, ssid } } = store.getState()
 
         socket.on('connect', () => {
-          socket.on(`chat-${userid}_${ssid}`, ({ message, duration }) => store.dispatch({
+          socket.on(`chat-${userid}_${ssid}`, ({ message, trace }) => store.dispatch({
             type: 'UPDATE_RESPONSE_TELEMETRY',
             value: {
               response: { message, sender: 'orva' },
-              duration,
+              trace,
             }
           }));
         });

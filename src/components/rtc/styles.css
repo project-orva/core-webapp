@@ -40,8 +40,8 @@
 }
 
 .rtc-message-orva {
-  min-width: 150px;
-  max-width: 90%;
+  align-self:flex-start;  
+  min-width: 250px;
 
   background-color: rgb(71, 165, 243);
 }

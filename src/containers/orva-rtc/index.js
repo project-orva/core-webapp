@@ -14,7 +14,7 @@ const enhance = compose(
                 payload,
             }),
             establishRtcConnection: () => ({
-                type: 'ESTABLISH_CONNECTION'
+                type: 'ESTABLISH_RTC_CONNECTION'
             }),
         }
     ),
