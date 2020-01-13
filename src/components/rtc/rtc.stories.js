@@ -73,7 +73,7 @@ export const networkTrace = () => (
 
 export const traceInformation = () => (
   <div style={{ height: 200}}>
-    <TraceInformation serviceTrace={{
+    <TraceInformation totalDuration={520} serviceCount={2} serviceTrace={{
       name: 'service 1',
       duration: 300,
       error: undefined,
