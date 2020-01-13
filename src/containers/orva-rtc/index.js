@@ -1,85 +1,38 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { compose, withState, withHandlers, withProps, lifecycle } from 'recompose';
-import { isEmpty } from 'lodash';
 
 import Layout from 'containers/layout';
-import Rtc from 'components/rtc';
-import NetworkTrace from 'components/rtc/rtc-network-trace';
-import TraceInfo from 'components/rtc/trace-information';
+
+import { RtcMessenger, NetworkTrace, TraceInformation } from 'components/rtc';
+import enhance from './enhance-rtc';
 
 import './styles.css';
 
-const enhance = compose(
-    connect(
-        ({ coreRTC: { messages, telemetry }, creds: { id: uid, ssid } }) => ({ messages, ssid, uid, telemetry}),
-        {
-            addMessage: (payload) => ({
-                type: 'SOCK_RTC_MESSAGE',
-                payload,
-            }),
-            establishRtcConnection: () => ({
-                type: 'ESTABLISH_RTC_CONNECTION'
-            }),
-        }
-    ),
-    withProps(({ uid, ssid }) => ({
-        chatName: `chat-${uid}_${ssid}`
-    })),
-    withState('messageInput', 'setMessageInput', ''),
-    withState('currentTrace', 'setCurrentTrace', {}),
-    withHandlers({
-        submitMessage: ({ messageInput, setMessageInput, addMessage, ssid, uid }) => (event) => {
-            if (event.charCode !== 13) {
-                return;
-            }
-
-            addMessage({
-                request: messageInput,
-                did: ssid,
-                uid,
-            });
-
-            setMessageInput('');
-        },
-        updateMessageInput: ({ setMessageInput }) => ({ target: { value } }) => {
-            setMessageInput(value);
-        },
-        updateCurrentTrace: () => (tr) => {
-            console.log(tr)
-        }
-    }),
-    lifecycle({
-        componentDidMount() {
-            const { telemetry, setCurrentTrace, establishRtcConnection } = this.props;
-            
-            establishRtcConnection();
-            if(telemetry.length > 0) {
-                setCurrentTrace(telemetry[telemetry.length -1])
-            }
-        }
-    }),
-    withProps(({ telemetry }) => ({
-        telemetry: telemetry.filter(t => !isEmpty(t))
-    }))
-);
-
-
-const CoreRTC = enhance(({ updateCurrentTrace, currentTrace, messageInput, messages, submitMessage, updateMessageInput }) => (
+// todo: display time message is resolved.
+const CoreRTC = enhance(({
+    updateServiceTrace,
+    serviceTrace,
+    currentTrace,
+    messageInput,
+    messages,
+    submitMessage,
+    updateMessageInput,
+    handleMessageSelection,
+}) => (
     <div className="rtc-grid-container">
         <div className="rtc-grid-chat">
-            <Rtc
+            <RtcMessenger
                 tempInput={messageInput}
                 messages={messages}
                 onKeyUp={submitMessage}
                 onChange={updateMessageInput}
+                onSelection={handleMessageSelection}
             />            
         </div>
         <div className="rtc-grid-trace-info">
-            <TraceInfo />
+            <TraceInformation serviceTrace={serviceTrace}/>
         </div>
         <div className="rtc-grid-trace">
-            <NetworkTrace onSelection={updateCurrentTrace} trace={currentTrace.trace}/>
+            <NetworkTrace onSelection={updateServiceTrace} trace={currentTrace.trace}/>
         </div>
     </div>
 ));

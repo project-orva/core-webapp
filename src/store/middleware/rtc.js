@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import uuid from 'uuid';
 
 export default store => {
   let socket = null;
@@ -10,7 +11,8 @@ export default store => {
         store.dispatch({
           type: 'ADD_RTC_MESSAGE', value: {
             message: payload.request,
-            sender: payload.userid
+            id: uuid(),
+            sender: payload.uid
           }
         });
 
@@ -22,13 +24,18 @@ export default store => {
         const { creds: { id, ssid } } = store.getState()
 
         socket.on('connect', () => {
-          socket.on(`chat-${id}_${ssid}`, ({ message, trace }) => store.dispatch({
-            type: 'UPDATE_RESPONSE_TELEMETRY',
-            value: {
-              response: { message, sender: 'orva' },
-              trace,
-            }
-          }));
+
+          socket.on(`chat-${id}_${ssid}`, ({ message, trace }) => {
+            const transaction = uuid.v4();
+            
+            store.dispatch({
+              type: 'UPDATE_RESPONSE_TELEMETRY',
+              value: {
+                response: { message, id: transaction, sender: 'orva' },
+                trace: {...trace, id: transaction},
+              }
+            })
+          });
         });
         break;
       }

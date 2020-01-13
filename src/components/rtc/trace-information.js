@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Table } from 'antd';
 
-export default ({ serviceTrace = {}, totalDuration, serviceCount }) => {
+export default ({ serviceTrace = {} }) => {
   const dataSource = useMemo(() => {
     return Object.keys(serviceTrace).map((key) => ({
       key,
