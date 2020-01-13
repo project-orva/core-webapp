@@ -223,6 +223,28 @@ setInterval(() => {
     }
 }, 2000);
 
+const createTrace = () => {
+    let totalDuration = 0; 
+
+    const service = ['e1', 'e2', 'e3', 'e4'].map(s => {
+        const duration = Math.random() * 500;
+        totalDuration += duration;
+
+        return {
+            name: s,
+            duration,
+            timeStart: ~~(Date.now() / 1000),
+            timeEnd: ~~(Date.now() / 1000) + (totalDuration / 1000),
+            error: Math.random() * 50 > 50 ? "Error: Service Timeout" : undefined
+        }
+    })
+
+    return {
+        totalDuration,
+        services: service,
+    }
+}
+
 ws.on('connection', function (socket) {
     setInterval(() => {
         socket.emit('activeUsersCount', { count: Math.round(Math.random() * (10 - 20) + 10) });
@@ -239,10 +261,10 @@ ws.on('connection', function (socket) {
  
     socket.on('subscribeToChat', ({ uid, did, request }) => {
         socket.emit(`chat-${uid}_${did}`, {
-            duration: 12312,
             message: `echo ${request}`,
             gphType: '',
             gph: '',
+            trace: createTrace()
         });
     })
 });
