@@ -9,14 +9,14 @@ export default ({ trace, totalOutlineSquares = 5, onSelection = () => { } }) => 
 
   useEffect(() => {
     setWidth(ref.current ? ref.current.offsetWidth : 0)
-  }, [ref.current]);
+  }, [width]);
 
   const outlineMarkers = !isEmpty(trace) ? Math.ceil(trace.totalDuration / totalOutlineSquares) : 100;
   const calculateWidth = useCallback((service, idx) => {
     const sm = service.duration / outlineMarkers
 
     return ((width / totalOutlineSquares + idx)) * sm;
-  }, [width]);
+  }, [width, outlineMarkers, totalOutlineSquares]);
 
   window.addEventListener('resize', () => setWidth(ref.current ? ref.current.offsetWidth : 0));
   return (
@@ -25,7 +25,7 @@ export default ({ trace, totalOutlineSquares = 5, onSelection = () => { } }) => 
         <div className="trace-markers">
           {
             trace !== undefined ? trace.services.map((service, idx) => (
-              <>
+              <React.Fragment key={idx}>
                 <div
                   onClick={() => onSelection(service)}
                   style={{
@@ -36,13 +36,13 @@ export default ({ trace, totalOutlineSquares = 5, onSelection = () => { } }) => 
                   }}
                   className="trace-marker"
                 />
-              </>
+              </React.Fragment>
             )) : null
           }
         </div>
         {
           Array(totalOutlineSquares).fill(null).map((e, idx) => (
-            <div className="trace-outline-square">
+            <div key={idx} className="trace-outline-square">
               <div className="trace-time-identifier">
                 {
                   outlineMarkers * (idx + 1)

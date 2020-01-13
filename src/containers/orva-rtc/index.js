@@ -12,7 +12,7 @@ import './styles.css';
 
 const enhance = compose(
     connect(
-        ({ coreRTC: { messages, telemetry }, creds: { userid, ssid } }) => ({ messages, ssid, userid, telemetry}),
+        ({ coreRTC: { messages, telemetry }, creds: { id: uid, ssid } }) => ({ messages, ssid, uid, telemetry}),
         {
             addMessage: (payload) => ({
                 type: 'SOCK_RTC_MESSAGE',
@@ -23,21 +23,21 @@ const enhance = compose(
             }),
         }
     ),
-    withProps(({ userid, ssid }) => ({
-        chatName: `chat-${userid}_${ssid}`
+    withProps(({ uid, ssid }) => ({
+        chatName: `chat-${uid}_${ssid}`
     })),
     withState('messageInput', 'setMessageInput', ''),
     withState('currentTrace', 'setCurrentTrace', {}),
     withHandlers({
-        submitMessage: ({ messageInput, setMessageInput, addMessage, ssid, userid }) => (event) => {
+        submitMessage: ({ messageInput, setMessageInput, addMessage, ssid, uid }) => (event) => {
             if (event.charCode !== 13) {
                 return;
             }
 
             addMessage({
                 request: messageInput,
-                uid: userid,
                 did: ssid,
+                uid,
             });
 
             setMessageInput('');

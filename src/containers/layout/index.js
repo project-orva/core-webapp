@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Layout from './layout';
 
 const enhance = compose(
-    connect(({ }) => ({}), {
+    connect(undefined, {
         clearCreds: () => ({
             type: 'CLEAR_CREDS'
         })
