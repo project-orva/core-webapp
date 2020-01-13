@@ -43,7 +43,7 @@ When either the profile visualization or memory visualization buttons are clicke
 ### Memory
 Memory page should handle displaying each memory per user as well as give analytics on the request set.
 
-Memory should be visualized on a timestamp basics on possibly a line graph? When a memory stamp is selected details regarding the contents of the message. 
+Memory should be visualized on a timestamp basis on possibly a line graph? When a memory stamp is selected details regarding the contents of the message. 
 
 ### Skills
 For skills, a basic table should be displayed for each of the skills. The skills page should also include a button for adding a new skill following the skill protobuf file. Lastly, this skill page should basic analytics for skill usage.
