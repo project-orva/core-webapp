@@ -152,7 +152,7 @@ app.post('/auth', ({ body: { username, password } }, res) => {
     const ed = {
         [username === 'root' && password === 'root']: {
             username: 'root user',
-            userid: 'root_test_01',
+            id: 'root_test_01',
             origin: 'stub',
             role: '4',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
@@ -160,7 +160,7 @@ app.post('/auth', ({ body: { username, password } }, res) => {
         },
         [username === 'dev' && password === 'dev']: {
             username: 'dev user',
-            userid: 'dev_test_01',
+            id: 'dev_test_01',
             origin: 'stub',
             role: '3',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
@@ -168,7 +168,7 @@ app.post('/auth', ({ body: { username, password } }, res) => {
         },
         [username === 'admin' && password === 'admin']: {
             username: 'admin user',
-            userid: 'admin_test_01',
+            id: 'admin_test_01',
             origin: 'stub',
             role: '2',
             ssid: '9570cb05-07d1-4edb-af9b-a7e38b4a537d',
@@ -200,13 +200,13 @@ app.get('/requestsForRange', (req, res) => {
 });
 
 setInterval(() => {
-    if (accounts.length < 55) {
+    if (accounts.length < 25) {
         const did = uuid.v4();
-        const uid = uuid.v4();
+        const id = uuid.v4();
 
         memories.push({
             did,
-            uid,
+            id,
             request: 'some mock message',
             response: 'some mock response',
         })
@@ -216,7 +216,7 @@ setInterval(() => {
                 role: 2,
                 name: `test account - ${accounts.length}`,
                 rpm: 312,
-                uuid: uid,
+                id,
             },
             devices: [{ id: did }],
         });
