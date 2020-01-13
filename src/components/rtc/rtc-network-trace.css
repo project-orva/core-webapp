@@ -1,0 +1,33 @@
+.network-trace-container {
+  display: flex;
+  justify-items: start;
+
+  flex-direction: row;
+
+  height: 100%;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.trace-outline-square {
+  border: 1px solid rgba(204, 204, 204, 0.726);
+  height: 200px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.trace-time-identifier {
+  position: absolute;
+  right: 5px;
+}
+
+.trace-marker {
+  position: absolute;
+  width: 200px;
+  height: 5px;
+  z-index: 2;
+  top: 40px;
+  background-color: rgba(134, 255, 97, 0.911);
+  cursor: pointer;
+}
