@@ -4,7 +4,13 @@ import { isEmpty } from 'lodash';
 
 export default compose(
     connect(
-        ({ coreRTC: { messages, telemetry }, creds: { id: uid, ssid } }) => ({ messages, ssid, uid, telemetry}),
+        ({ coreRTC: { messages, telemetry, latestTrace }, creds: { id: uid, ssid } }) => ({
+            latestTrace,
+            messages,
+            ssid,
+            uid,
+            telemetry
+    }),
         {
             addMessage: (payload) => ({
                 type: 'SOCK_RTC_MESSAGE',
@@ -13,13 +19,16 @@ export default compose(
             establishRtcConnection: () => ({
                 type: 'ESTABLISH_RTC_CONNECTION'
             }),
+            updateActiveTrace: (value) => ({
+                type: 'UPDATE_ACTIVE_TELEMETRY_TRACE',
+                value,
+            })
         }
     ),
     withProps(({ uid, ssid }) => ({
         chatName: `chat-${uid}_${ssid}`
     })),
     withState('messageInput', 'setMessageInput', ''),
-    withState('currentTrace', 'setCurrentTrace', {}),
     withState('serviceTrace', 'setServiceTrace', {}),
     withHandlers({
         submitMessage: ({ messageInput, setMessageInput, addMessage, ssid, uid }) => (event) => {
@@ -38,21 +47,14 @@ export default compose(
         updateMessageInput: ({ setMessageInput }) => ({ target: { value } }) => {
             setMessageInput(value);
         },
-        updateServiceTrace: ({ setServiceTrace }) => serviceTrace => {
-            setServiceTrace(serviceTrace);
-        },
-        handleMessageSelection: () => message => {
-            console.log(message)
+        handleMessageSelection: ({ updateActiveTrace, telemetry }) => telemetryID => {
+            const currentServiceTrace = telemetry.find(({ trace: {id} }) => id === telemetryID);
+            updateActiveTrace(currentServiceTrace.trace);
         }
     }),
     lifecycle({
-        componentDidMount() {
-            const { telemetry, setCurrentTrace, establishRtcConnection } = this.props;
-            
-            establishRtcConnection();
-            if(telemetry.length > 0) {
-                setCurrentTrace(telemetry[telemetry.length -1])
-            }
+        componentDidMount() {            
+            this.props.establishRtcConnection();           
         }
     }),
     withProps(({ telemetry }) => ({

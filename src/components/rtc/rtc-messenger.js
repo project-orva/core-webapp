@@ -28,7 +28,7 @@ const RtcMessages = ({ messages, onSelection, className, messagesEndRef }) => me
           <RtcMessage key={idx} {...message} onSelection={onSelection} />
         ))
       }
-      <div ref={messagesEndRef} />
+      <div id="messenger-ref" ref={messagesEndRef} />
     </div>
   );
 

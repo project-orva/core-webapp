@@ -1,6 +1,23 @@
 import io from 'socket.io-client';
 import uuid from 'uuid';
 
+const addTelemetry = ({store, trace, message }) => {
+  const transaction = uuid.v4();
+
+  store.dispatch({
+    type: 'UPDATE_RESPONSE_TELEMETRY',
+    value: {
+      response: { message, id: transaction, sender: 'orva' },
+      trace: {...trace, id: transaction},
+    }
+  });
+
+  store.dispatch({
+    type: 'UPDATE_ACTIVE_TELEMETRY_TRACE',
+    value: trace,
+  })
+}
+
 export default store => {
   let socket = null;
 
@@ -26,15 +43,7 @@ export default store => {
         socket.on('connect', () => {
 
           socket.on(`chat-${id}_${ssid}`, ({ message, trace }) => {
-            const transaction = uuid.v4();
-            
-            store.dispatch({
-              type: 'UPDATE_RESPONSE_TELEMETRY',
-              value: {
-                response: { message, id: transaction, sender: 'orva' },
-                trace: {...trace, id: transaction},
-              }
-            })
+            addTelemetry({store, message, trace });
           });
         });
         break;

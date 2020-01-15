@@ -5,7 +5,7 @@ const { Header, Content, Sider } = Layout;
 
 const DefaultLayout = ({ children: Children, breadcrumbs = ['Home'], selectedKeys, onMenuItemClick, logout = () => {} }) => (
     <Layout
-        style={{ height: '100vh' }}
+        style={{ height: '100%' }}
     >
         <Header className="header">
             <div className="logo" style={{
@@ -40,12 +40,12 @@ const DefaultLayout = ({ children: Children, breadcrumbs = ['Home'], selectedKey
             </Menu>
         </Header>
         <Layout>
-            <Sider width={250} style={{ background: '#fff' }}>
+            <Sider theme="dark" width={250} style={{ background: '#fff' }}>
                 <Menu
                     mode="inline"
                     selectedKeys={selectedKeys}
                     defaultSelectedKeys={['dashboard']}
-                    style={{ height: '100%', borderRight: 0, marginTop: 10 }}
+                    style={{ height: '100%', marginTop: 10, width: 250, position: 'fixed' }}
                 >
                     <Menu.Item onClick={onMenuItemClick} key="dashboard">Analytics Dashboard</Menu.Item>
                     <Menu.Item onClick={onMenuItemClick} key="accounts">Accounts</Menu.Item>

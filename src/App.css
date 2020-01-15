@@ -5,12 +5,13 @@
 }
 
 body {
+  background-color: rgb(240, 242, 245);
   overflow: hidden;
+  height: auto;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

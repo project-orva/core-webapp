@@ -16,10 +16,23 @@ export default (state = INITIAL_STATE, { type, value }) => {
             const { response, ...rest } = value;
             return {
                 ...state,
-                telemetry: [...state.telemetry, rest ],
-                messages: [...state.messages, response ]
+                telemetry: [
+                    ...state.telemetry,
+                    rest
+                ],
+                messages: [
+                    ...state.messages,
+                    response
+                ],
             }
         }
+        case 'UPDATE_ACTIVE_TELEMETRY_TRACE': {
+            return {
+                ...state,
+                latestTrace: value,
+            }
+        }
+        
         default: {
             return state;
         }

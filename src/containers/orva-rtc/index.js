@@ -9,9 +9,9 @@ import './styles.css';
 
 // todo: display time message is resolved.
 const CoreRTC = enhance(({
-    updateServiceTrace,
+    setServiceTrace,
     serviceTrace,
-    currentTrace,
+    latestTrace,
     messageInput,
     messages,
     submitMessage,
@@ -32,7 +32,10 @@ const CoreRTC = enhance(({
             <TraceInformation serviceTrace={serviceTrace}/>
         </div>
         <div className="rtc-grid-trace">
-            <NetworkTrace onSelection={updateServiceTrace} trace={currentTrace.trace}/>
+            <NetworkTrace   
+                onSelection={setServiceTrace}
+                trace={latestTrace}
+            />
         </div>
     </div>
 ));
