@@ -41,7 +41,6 @@ export default store => {
         const { creds: { id, ssid } } = store.getState()
 
         socket.on('connect', () => {
-
           socket.on(`chat-${id}_${ssid}`, ({ message, trace }) => {
             addTelemetry({store, message, trace });
           });

@@ -27,7 +27,10 @@ __Dashboard MVP__
 - active users in pie graph of total
 - requests for the some time set
 - code service traces 
-- errors from services
+- errors from services - requires a new service to be make for logging.
+
+#### Notes:
+It would be cool to have an alert to come up every time that service is down and a user is in the ui. 
 
 ### Accounts
 The accounts screen should show a list of all of the accounts in a table along with information about the account like.
@@ -43,7 +46,7 @@ When either the profile visualization or memory visualization buttons are clicke
 ### Memory
 Memory page should handle displaying each memory per user as well as give analytics on the request set.
 
-Memory should be visualized on a timestamp basis on possibly a line graph? When a memory stamp is selected details regarding the contents of the message. 
+Memory should be visualized on a timestamp basis on possibly a line graph? When a memory stamp is selected details regarding the contents of the message should be displayed. 
 
 ### Skills
 For skills, a basic table should be displayed for each of the skills. The skills page should also include a button for adding a new skill following the skill protobuf file. Lastly, this skill page should basic analytics for skill usage.

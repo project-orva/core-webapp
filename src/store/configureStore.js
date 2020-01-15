@@ -3,13 +3,17 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 
 import rtcMiddleware from './middleware/rtc';
+import serviceHealthMiddleware from './middleware/service-health';
 
 export default () => {
   const store = createStore(
     rootReducer,
     JSON.parse(localStorage.getItem('redux.persisted')) || {},
     compose(
-      applyMiddleware(rtcMiddleware),
+      applyMiddleware(
+        serviceHealthMiddleware,
+        rtcMiddleware,
+      ),
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     ),
   );

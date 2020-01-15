@@ -257,7 +257,43 @@ ws.on('connection', function (socket) {
             speech: Math.round(Math.random() * (10 - 20) + 10),
         })
         socket.emit('accountsCount', { count: accounts.length });
-    }, 1000);
+
+        socket.emit('servicesHeathStatus', {
+            count: 6,
+            services: [
+                {
+                    id: 'ser1-id',
+                    name: 'Account',
+                    isUp: Math.random() * 100 >= 20,
+                },
+                {
+                    id: 'ser2-id',
+                    name: 'Core', 
+                    isUp: Math.random() * 100 >= 20,
+                },
+                {
+                    id: 'ser3-id',
+                    name: 'Memory', 
+                    isUp: Math.random() * 100 >= 20,
+                },
+                {
+                    id: 'ser4-id',
+                    name: 'Profile', 
+                    isUp: Math.random() * 100 >= 20,
+                },
+                {
+                    id: 'ser5-id',
+                    name: 'Skill', 
+                    isUp: Math.random() * 100 >= 20,
+                },
+                {
+                    id: 'ser6-id',
+                    name: 'Speech', 
+                    isUp: Math.random() * 100 >= 20,
+                }
+            ]
+        })
+    }, 2000);
  
     socket.on('subscribeToChat', ({ uid, did, request }) => {
         socket.emit(`chat-${uid}_${did}`, {
