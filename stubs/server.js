@@ -235,7 +235,7 @@ const createTrace = () => {
             duration,
             timeStart: ~~(Date.now() / 1000),
             timeEnd: ~~(Date.now() / 1000) + (totalDuration / 1000),
-            error: Math.random() * 50 > 50 ? "Error: Service Timeout" : undefined
+            error: Math.random() * 100 >= 50 ? "Error: Service Timeout" : undefined
         }
     })
 
