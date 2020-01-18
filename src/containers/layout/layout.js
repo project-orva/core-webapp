@@ -51,8 +51,8 @@ const DefaultLayout = ({ children: Children, breadcrumbs = ['Home'], selectedKey
                     <Menu.Item onClick={onMenuItemClick} key="accounts">Accounts</Menu.Item>
                     <Menu.Item onClick={onMenuItemClick} key="skills">Skills</Menu.Item>
                     <Menu.Item onClick={onMenuItemClick} key="orva-rtc">Core Real-Time-Chat</Menu.Item>
-                    <Menu.Item onClick={onMenuItemClick} key="profile-visualizer">Memory Visualizer</Menu.Item>
-                    <Menu.Item onClick={onMenuItemClick} key="memory-visualizer">Profile Visualizer</Menu.Item>
+                    <Menu.Item onClick={onMenuItemClick} key="memory-visualizer">Memory Visualizer</Menu.Item>
+                    <Menu.Item onClick={onMenuItemClick} key="profile-visualizer">Profile Visualizer</Menu.Item>
                 </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px 24px' }}>
