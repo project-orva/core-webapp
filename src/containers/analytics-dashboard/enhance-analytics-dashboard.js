@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export default compose(
   connect(
-    ({ servicesHealth: { services } }) => ({ servicesHealth: services }), 
+    ({ servicesHealth: { services } }) => ({ services }), 
     {
         establishServiceHealthSocket: () => ({
           type: 'ESTABLISH_SERVICE_HEALTH_SOCKET'

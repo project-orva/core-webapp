@@ -1,5 +1,5 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import io from 'socket.io';
 import http from 'http';
 import uuid from 'uuid';
@@ -305,5 +305,5 @@ ws.on('connection', function (socket) {
     })
 });
 
-server.listen(PORT);
 
+server.listen(PORT);
