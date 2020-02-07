@@ -1,5 +1,5 @@
 import React from 'react';
-import Rtc from './index';
+import Rtc from './rtc-messenger';
 import Trace from './rtc-network-trace';
 import TraceInformation from './trace-information';
 

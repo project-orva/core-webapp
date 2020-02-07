@@ -37,7 +37,6 @@ The accounts screen should show a list of all of the accounts in a table along w
 - Profile Visualization Button
 - Memory Visualization Button
 - Creation Date
-- Requests per month
 - Name
 - Role
 
