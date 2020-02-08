@@ -3,7 +3,7 @@
  <img src="https://avatars2.githubusercontent.com/u/53947571?s=200&v=4"  alt="Project Orva Logo"></a>
 </p>
 
-<h1 align="center">Core WebApp</h1>
+<h1 align="center">Core Web-App</h1>
 
 ## Running
 ### Local
